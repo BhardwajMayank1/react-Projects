@@ -1,53 +1,55 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useState } from 'react'
 
 const App = () => {
 
-  const [title, setTitle] = useState('')
-  const [todo, setTodo] = useState([])
+       const [title , setTitle]=useState('')
+       const[todo,setTodo]=useState([]) 
 
-  const submitHandler = (e) => {
+  const submitHandler=(e)=>{
     e.preventDefault()
 
-    const allTodo = [...todo]
-    allTodo.push({ title })
-    setTodo(allTodo)
+  const allTodo=[...todo]
+  allTodo.push({title})
+  setTodo(allTodo)
 
-    console.log(allTodo)
-
-    setTitle('')
+  setTitle('')
   }
 
-  const deleteTodo=(index)=>{
-const allTodo=[...todo]
-allTodo.splice(index,1)
-setTodo(allTodo)
+  const deleteTodo=(idx)=>{
+    const all =[...todo]
+    all.splice(idx,1)
+    setTodo(all)
+
   }
+
+ 
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
-        <input
-          type="text"
-          placeholder="Enter Notes Heading"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value)
-          }}
-        />
+      <form onSubmit={(e)=>{
+        submitHandler(e)
+      }}>
+        <input type="text" 
+        placeholder='Enter a Todo'
+        value={title}
+        onChange={(e)=>{
+          setTitle(e.target.value)
+        }} />
 
-        <button>Add Notes</button>
+        <button>Add Todo</button>
 
       </form>
-
       <ul>
-        {todo.map((item, index) => (
-          <li key={index}>{item.title}
-          <button onClick={()=>{
-            deleteTodo(index)
-          }}>Delete</button></li>
-          
-        ))}
+      {todo.map((elem,idx)=>(
+        <li key={idx}>{elem.title } 
+         <button onClick={(idx)=>{
+          deleteTodo(idx)
+        }}>delete</button></li>
+       
+      ))}
       </ul>
+      
     </div>
   )
 }
