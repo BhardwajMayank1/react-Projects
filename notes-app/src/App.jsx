@@ -8,15 +8,6 @@
     const [todo, setTodo] = useState([])
 
 
-useEffect(() => {
-  const saved = localStorage.getItem('Todos')
-  if (saved) setTodo(JSON.parse(saved))
-}, []) // Empty dependency array
-
-// Save to localStorage whenever todo changes
-useEffect(() => {
-  localStorage.setItem('Todos', JSON.stringify(todo))
-}, [todo])
 
 
     const submitHandler = (e) => {
